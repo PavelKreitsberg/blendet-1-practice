@@ -2,12 +2,15 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const express = require("express");
 const { getAllMessages, createMessage } = require("./models/service");
+const authRouter = require("./routers/authRouter");
 
 require("dotenv").config();
 
 const app = express();
 app.use(cors());
 const http = require("http").Server(app);
+
+app.use("api/auth", authRouter);
 
 const socket = require("socket.io")(http, {
   cors: "https://gigachat-76i5.onrender.com",
