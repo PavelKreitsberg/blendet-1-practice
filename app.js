@@ -35,6 +35,8 @@ socket.on("connection", async (user) => {
   });
 });
 
-const { PORT } = process.env;
+const { PORT, DB_HOST } = process.env;
+
+mongoose.connect(DB_HOST, () => console.log(`Database connected`));
 
 http.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
