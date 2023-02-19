@@ -18,7 +18,7 @@ global.onlineUsers = new Map();
 socket.on("connection", async (user) => {
   user.emit("changeOnline", onlineUsers.size);
   console.log("Connected");
-  user.broadcast.emit("AllMessages", await getAllMessages());
+  user.emit("AllMessages", await getAllMessages());
   user.on("addUser", (data) => {
     onlineUsers.set(user.id, data.name);
     user.emit("changeOnline", onlineUsers.size);
